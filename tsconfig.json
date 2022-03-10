@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2021"],
+    "module": "es2020",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "es2021",
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "exactOptionalPropertyTypes": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  }
+}

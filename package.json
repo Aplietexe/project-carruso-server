@@ -12,12 +12,16 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
-    "mongodb": "^4.4.1"
+    "isomorphic-dompurify": "^0.18.0",
+    "jsonschema": "^1.4.0",
+    "mongodb": "^4.4.1",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/node": "^17.0.21",
+    "@types/validator": "^13.7.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.11.0",
     "eslint-config-hardcore": "^24.3.0",

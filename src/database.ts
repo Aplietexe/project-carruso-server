@@ -1,5 +1,7 @@
 import { type MongoClientOptions, type Db, MongoClient } from "mongodb"
 
+import type { Car } from "./types"
+
 let database: Db | undefined
 
 const connectToDatabase = async () => {
@@ -30,4 +32,10 @@ const getDatabase = () => {
   return database
 }
 
-export { connectToDatabase, getDatabase }
+const collections = {
+  get cars() {
+    return getDatabase().collection<Car>("cars")
+  },
+}
+
+export { connectToDatabase, getDatabase, collections }

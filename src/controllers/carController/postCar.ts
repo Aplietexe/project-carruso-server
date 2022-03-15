@@ -6,8 +6,9 @@ import DOMPurify from "isomorphic-dompurify"
 
 import type { Car, Category } from "../../types"
 import { collections } from "../../database"
+import { sanitizeAndFormat } from "../../helpers"
 
-const { escape: escapeChars, stripLow, isBase64 } = validator
+const { isBase64 } = validator
 
 interface Body {
   category: Category
@@ -90,9 +91,6 @@ const isImageValid = (image: string) => {
   )
 }
 
-const format = (value: string) =>
-  escapeChars(stripLow(DOMPurify.sanitize(value).trim(), true))
-
 const processCar = (reqBody: unknown): Car | undefined => {
   if (!isBodyValid(reqBody)) return undefined
 
@@ -105,13 +103,13 @@ const processCar = (reqBody: unknown): Car | undefined => {
     date: Date.now(),
 
     details: details.map(({ body, title: detailTitle }) => ({
-      body: format(body),
-      title: format(detailTitle),
+      body: sanitizeAndFormat(body),
+      title: sanitizeAndFormat(detailTitle),
     })),
 
     images: images.map((image) => new Binary(DOMPurify.sanitize(image))),
     price,
-    title: format(title),
+    title: sanitizeAndFormat(title),
   }
 }
 

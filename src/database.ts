@@ -1,6 +1,6 @@
 import { type MongoClientOptions, type Db, MongoClient } from "mongodb"
 
-import type { Car } from "./types"
+import type { Car, ContactMessage } from "./types"
 
 let database: Db | undefined
 
@@ -35,6 +35,10 @@ const getDatabase = () => {
 const collections = {
   get cars() {
     return getDatabase().collection<Car>("cars")
+  },
+
+  get contactMessages() {
+    return getDatabase().collection<ContactMessage>("contactMessages")
   },
 }
 

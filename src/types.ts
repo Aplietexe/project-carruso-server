@@ -14,4 +14,11 @@ interface Car {
   title: string
 }
 
-export type { Category, Car }
+interface ContactMessage {
+  email: string
+  message: string
+  name: string
+  phone: string
+}
+
+export type { Category, Car, ContactMessage }

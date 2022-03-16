@@ -1,6 +1,6 @@
 import { type MongoClientOptions, type Db, MongoClient } from "mongodb"
 
-import type { Car, ContactMessage } from "./types"
+import type { Car, ContactMessage, CreditRequest } from "./types"
 
 let database: Db | undefined
 
@@ -39,6 +39,10 @@ const collections = {
 
   get contactMessages() {
     return getDatabase().collection<ContactMessage>("contactMessages")
+  },
+
+  get creditRequests() {
+    return getDatabase().collection<CreditRequest>("creditRequests")
   },
 }
 

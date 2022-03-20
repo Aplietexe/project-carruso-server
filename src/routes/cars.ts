@@ -1,6 +1,11 @@
 import { Router } from "express"
 
-import { listCars, postCar, showCar } from "../controllers/carController"
+import {
+  deleteCar,
+  listCars,
+  postCar,
+  showCar,
+} from "../controllers/carController"
 import addId from "../middleware/addId"
 
 const routes = Router()
@@ -11,6 +16,6 @@ routes.route("/car").post(postCar)
 
 routes.use("/car/:id", addId)
 
-routes.route("/car/:id").get(showCar)
+routes.route("/car/:id").get(showCar).delete(deleteCar)
 
 export default routes

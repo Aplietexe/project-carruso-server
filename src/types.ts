@@ -1,4 +1,5 @@
-import type { Binary } from "mongodb"
+import type { Request } from "express"
+import type { Binary, ObjectId } from "mongodb"
 
 type Category = "new" | "seminew" | "utility"
 
@@ -48,4 +49,8 @@ interface CreditRequest {
   rfc: string
 }
 
-export type { Category, Car, ContactMessage, CreditRequest }
+interface RequestWithId extends Request {
+  id?: ObjectId
+}
+
+export type { Category, Car, ContactMessage, CreditRequest, RequestWithId }

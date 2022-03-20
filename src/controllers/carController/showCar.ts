@@ -1,36 +1,28 @@
-import type { Request, Response } from "express"
-import { type WithId, ObjectId } from "mongodb"
+import type { Response } from "express"
+import type { WithId } from "mongodb"
 
 import { collections } from "../../database"
-import type { Car } from "../../types"
-
-const processId = (id: string) => {
-  if (!ObjectId.isValid(id)) return undefined
-
-  const newId = new ObjectId(id)
-
-  return newId.toString() === id ? newId : undefined
-}
+import type { Car, RequestWithId } from "../../types"
 
 interface ResponseCar extends WithId<Omit<Car, "images">> {
   images: string[]
 }
 
-const showCar = async (req: Request, res: Response<ResponseCar>) => {
-  const id = processId(req.params.id)
+const showCar = async (req: RequestWithId, res: Response<ResponseCar>) => {
+  if (!req.id) {
+    res.sendStatus(400)
+    return
+  }
 
-  if (id) {
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const databaseCar = await collections.cars.findOne({ _id: id })
+  const databaseCar = await collections.cars.findOne({ _id: req.id })
 
-    if (databaseCar) {
-      const car = {
-        ...databaseCar,
-        images: databaseCar.images.map((image) => image.toString()),
-      }
-      res.json(car)
-    } else res.sendStatus(404)
-  } else res.sendStatus(400)
+  if (databaseCar) {
+    const car = {
+      ...databaseCar,
+      images: databaseCar.images.map((image) => image.toString()),
+    }
+    res.json(car)
+  } else res.sendStatus(404)
 }
 
 export default showCar

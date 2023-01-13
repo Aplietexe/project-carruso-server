@@ -15,8 +15,8 @@ app.use(express.json({ limit: "15mb" }))
 
 app.use(routes)
 
-app.listen(port, () => {
-  void connectToDatabase()
-
-  console.log(`Server is running on port: ${port}`)
+connectToDatabase().then(() => {
+  app.listen(port, () => {
+    console.log(`Server is running on port: ${port}`)
+  })
 })

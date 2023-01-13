@@ -4,9 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "watch": "",
+    "dev": "tsc-watch --onSuccess \"node --experimental-specifier-resolution=node ./dist\"",
     "build": "tsc",
-    "start": "tsc-watch --onSuccess \"node --experimental-specifier-resolution=node ./dist\""
+    "start": "node --experimental-specifier-resolution=node ./dist"
   },
   "dependencies": {
     "cors": "^2.8.5",
